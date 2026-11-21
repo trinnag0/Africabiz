@@ -84,7 +84,7 @@ function getRatingSummary(productId) {
  * Toggles cart sidebar visibility when cart icon is clicked
  * Slides cart in from right and shifts main container left
  */
-iconCart.addEventListener('click', () => {
+if (iconCart) iconCart.addEventListener('click', () => {
     if (cart.style.right == '0px' || cart.style.right == '0') {
         // Hide cart - slide out to right
         cart.style.right = '-100%';
@@ -100,7 +100,7 @@ iconCart.addEventListener('click', () => {
  * Closes cart sidebar when close button is clicked
  * Resets container position to normal
  */
-close.addEventListener('click', () => {
+if (close) close.addEventListener('click', () => {
     cart.style.right = '-100%';
     container.style.transform = 'translate(0)';
 });
@@ -188,13 +188,20 @@ let listCart = [];
  * Parses the listCart cookie and populates the cart array
  */
 function checkCart() {
-    var cookieValue = document.cookie
-        .split(';')
-        .find(row => row.trim().startsWith('listCart='));
-    if (cookieValue) {
-        listCart = JSON.parse(cookieValue.split('=')[1]);
+    try {
+        const localCart = JSON.parse(localStorage.getItem('africabiz-cart') || '[]');
+        if (Array.isArray(localCart) && localCart.length) {
+            listCart = localCart;
+        } else {
+            var cookieValue = document.cookie
+                .split(';')
+                .find(row => row.trim().startsWith('listCart='));
+            if (cookieValue) listCart = JSON.parse(decodeURIComponent(cookieValue.split('=')[1]));
+        }
+    } catch (e) {
+        listCart = [];
     }
-    addCartToHTML();
+    if (typeof addCartToHTML === 'function') addCartToHTML();
 }
 
 // Initialize cart on page load
@@ -248,9 +255,9 @@ function addCart(idProduct) {
         showAddToCartMessage(dataProduct.name);
     }
     
-    // Save cart data to cookie for persistence
-    let timeSave = "expires=Thu, 18 Dec 2025 12:00:00 UTC";
-    document.cookie = "listCart=" + JSON.stringify(listCart) + ";" + timeSave + ";path=/";
+    // Persist cart for both the old and new marketplace pages
+    localStorage.setItem("africabiz-cart", JSON.stringify(listCart));
+    document.cookie = "listCart=" + encodeURIComponent(JSON.stringify(listCart)) + ";expires=Thu, 31 Dec 2037 12:00:00 UTC;path=/";
     
     // Update cart display
     addCartToHTML();
@@ -335,9 +342,8 @@ function changeQuantity(idProduct, type) {
                 break;
         }
         
-        // Save updated cart data to cookie
-        let timeSave = "expires=Thu, 18 Dec 2025 12:00:00 UTC";
-        document.cookie = "listCart=" + JSON.stringify(listCart) + ";" + timeSave + ";path=/";
+        localStorage.setItem("africabiz-cart", JSON.stringify(listCart));
+        document.cookie = "listCart=" + encodeURIComponent(JSON.stringify(listCart)) + ";expires=Thu, 31 Dec 2037 12:00:00 UTC;path=/";
 
         // Update cart display
         addCartToHTML();

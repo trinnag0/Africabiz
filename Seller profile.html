@@ -77,19 +77,23 @@
         }, 1200);
     }
     function getCartFromCookie() {
+        try {
+            const localCart = JSON.parse(localStorage.getItem("africabiz-cart") || "[]");
+            if (Array.isArray(localCart)) return localCart;
+        } catch (e) {}
         var cookieValue = document.cookie
             .split(';')
             .find(row => row.trim().startsWith('listCart='));
         if (cookieValue) {
             try {
-                return JSON.parse(cookieValue.split('=')[1]);
+                return JSON.parse(decodeURIComponent(cookieValue.split('=')[1]));
             } catch (e) { return []; }
         }
         return [];
     }
     function saveCartToCookie(listCart) {
-        let timeSave = "expires=Thu, 18 Dec 2025 12:00:00 UTC";
-        document.cookie = "listCart=" + JSON.stringify(listCart) + ";" + timeSave + ";path=/";
+        localStorage.setItem("africabiz-cart", JSON.stringify(listCart));
+        document.cookie = "listCart=" + encodeURIComponent(JSON.stringify(listCart)) + ";expires=Thu, 31 Dec 2037 12:00:00 UTC;path=/";
     }
     function addCartProduct(product) {
         let listCart = getCartFromCookie();

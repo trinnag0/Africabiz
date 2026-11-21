@@ -1,213 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Product Dashboard</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <!-- Chosen Palette: Warm Neutrals -->
-    <!-- Application Structure Plan: A dashboard layout was chosen to provide a comprehensive overview at a glance while allowing for intuitive, interactive filtering. The structure includes a filter sidebar/panel, a summary stats area, two dynamic charts for categorical and price analysis, and a responsive product grid. This is more user-friendly than a simple list as it empowers users to explore the data from multiple angles (category, price, stock) and see the impact of their choices reflected in both the charts and the product list simultaneously. -->
-    <!-- Visualization & Content Choices: 
-        - Product Data -> Goal: Organize/Display -> Presentation: Responsive Card Grid (HTML/Tailwind) -> Interaction: Dynamically updated by JS based on filters. Justification: Standard, scannable, and familiar UX for product catalogs.
-        - Categories -> Goal: Compare/Filter -> Presentation: Filter Buttons -> Interaction: Click to filter grid/charts. Justification: Quick, direct interaction for primary data pivot.
-        - Stock Status -> Goal: Filter -> Presentation: Toggle Switch -> Interaction: Toggle to filter. Justification: Clear binary choice for availability.
-        - Price -> Goal: Filter -> Presentation: Range Slider -> Interaction: Drag to filter. Justification: Intuitive for selecting a numeric range.
-        - Category Distribution -> Goal: Inform/Compare -> Viz: Donut Chart (Chart.js/Canvas) -> Interaction: Updates with filters. Justification: Excellent for showing part-to-whole relationships of product categories.
-        - Avg. Price by Category -> Goal: Compare -> Viz: Bar Chart (Chart.js/Canvas) -> Interaction: Updates with filters. Justification: Best for direct comparison of quantitative data (price) across different categories.
-        -->
-    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
-    <style>
-        body {
-            background-color: #FDFBF8;
-            font-family: 'Inter', sans-serif;
-        }
-        .chart-container {
-            position: relative;
-            width: 100%;
-            max-width: 500px;
-            margin-left: auto;
-            margin-right: auto;
-            height: 300px;
-            max-height: 350px;
-        }
-        @media (min-width: 768px) {
-            .chart-container {
-                height: 350px;
-            }
-        }
-        .add-to-cart-message {
-          position: fixed;
-          top: 30px;
-          left: 50%;
-          transform: translateX(-50%);
-          background: #10b981;
-          color: #fff;
-          padding: 14px 32px;
-          border-radius: 8px;
-          font-size: 1.1rem;
-          font-weight: bold;
-          z-index: 9999;
-          box-shadow: 0 2px 12px rgba(16,185,129,0.15);
-          opacity: 1;
-          transition: opacity 0.6s;
-        }
-        .add-to-cart-message.fade-out {
-          opacity: 0;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#16886b">
+  <title>Africabiz — KIIT African Community</title>
+  <link rel="stylesheet" href="africabiz.css">
+  <script src="africabiz.js" defer></script>
 </head>
-<body class="text-gray-800">
-    <div class="container mx-auto p-4 md:p-8">
-        <div style="margin-bottom: 24px; text-align:left;">
-            <a href="cart.html" style="display:inline-block; background:#f59e0b; color:#fff; font-weight:bold; padding:10px 22px; border-radius:8px; text-decoration:none; font-size:1rem;">&larr; Return to Market</a>
+<body>
+  <header class="topbar">
+    <nav class="nav" aria-label="Primary navigation">
+      <a class="brand" href="#home"><span class="brand-mark">A</span><span>Africabiz</span></a>
+      <button class="menu-button" id="menuButton" aria-label="Open menu">☰</button>
+      <div class="nav-links" id="navLinks">
+        <a href="#market">Market</a>
+        <a href="#events">Events</a>
+        <a href="#sports">Sports</a>
+        <a href="#updates">Updates</a>
+      </div>
+      <button class="cart-button" id="cartButton" aria-label="Open cart">Cart <span class="cart-count">0</span></button>
+    </nav>
+  </header>
+
+  <main id="home">
+    <section class="hero">
+      <div class="hero-inner">
+        <span class="eyebrow">KIIT African Community</span>
+        <h1>Shop, meet, play, belong.</h1>
+        <p>Discover African products and services, upcoming KIIT events, sports fixtures and the latest community updates in one place.</p>
+        <div class="hero-actions">
+          <a class="button" href="#market">Explore market</a>
+          <a class="button secondary" href="#events">See upcoming events</a>
         </div>
-        <div id="product-grid"></div>
-    </div>
-    <script>
-    // --- Cart logic copied from cart.js for cross-page compatibility ---
-    function showAddToCartMessage(productName) {
-        let msg = document.createElement('div');
-        msg.className = 'add-to-cart-message';
-        msg.innerText = `${productName} has been added to cart!`;
-        document.body.appendChild(msg);
-        setTimeout(() => {
-            msg.classList.add('fade-out');
-            setTimeout(() => document.body.removeChild(msg), 600);
-        }, 1200);
-    }
-    function getCartFromCookie() {
-        var cookieValue = document.cookie
-            .split(';')
-            .find(row => row.trim().startsWith('listCart='));
-        if (cookieValue) {
-            try {
-                return JSON.parse(cookieValue.split('=')[1]);
-            } catch (e) { return []; }
-        }
-        return [];
-    }
-    function saveCartToCookie(listCart) {
-        let timeSave = "expires=Thu, 18 Dec 2025 12:00:00 UTC";
-        document.cookie = "listCart=" + JSON.stringify(listCart) + ";" + timeSave + ";path=/";
-    }
-    function addCartProduct(product) {
-        let listCart = getCartFromCookie();
-        let productInCart = listCart.find(p => p.id === product.id && p.itemName === product.itemName);
-        if (!productInCart) {
-            let dataProduct = JSON.parse(JSON.stringify(product));
-            dataProduct.quantity = 1;
-            listCart.push(dataProduct);
-            showAddToCartMessage(dataProduct.itemName || dataProduct.name);
-        } else {
-            productInCart.quantity++;
-            showAddToCartMessage(productInCart.itemName || productInCart.name);
-        }
-        saveCartToCookie(listCart);
-    }
-    // --- End cart logic ---
+      </div>
+    </section>
 
-    document.addEventListener('DOMContentLoaded', function() {
-        const params = new URLSearchParams(window.location.search);
-        const sellerId = params.get('id');
-        if (!sellerId) return;
+    <section class="section" id="market">
+      <div class="section-head">
+        <div><span class="kicker">Community marketplace</span><h2>Services & products</h2></div>
+        <p>Browse trusted African-owned services around KIIT.</p>
+      </div>
+      <div class="search-row">
+        <input id="searchInput" type="search" placeholder="Search burgers, barber, makeup, jerseys…" aria-label="Search marketplace">
+      </div>
+      <div class="market-grid" id="marketGrid"><div class="empty">Loading marketplace…</div></div>
+    </section>
 
-        fetch('product.json')
-          .then(res => res.json())
-          .then(products => {
-            const seller = products.find(p => p.id == sellerId);
-            if (!seller) {
-              document.getElementById('product-grid').innerHTML = '<p>Seller not found.</p>';
-              return;
-            }
-            let html = `
-              <div style="text-align:center; margin-bottom:32px;">
-                <img src="${seller.image}" alt="${seller.name}" style="max-width:200px; border-radius:16px; margin-bottom:16px;">
-                <h2 style="font-size:2rem; font-weight:bold;">${seller.name}</h2>
-                <p style="font-size:1.2rem; margin:8px 0;">Category: ${seller.category || ''}</p>
-              </div>
-              <div style="margin-top:16px;">
-                <h3 style="font-size:1.5rem; font-weight:bold; margin-bottom:16px;">${seller.category} Offered:</h3>
-                <div style="display:flex; flex-wrap:wrap; gap:24px; justify-content:center;">
-            `;
-            if (Array.isArray(seller.items) && seller.items.length > 0) {
-              seller.items.forEach((item, idx) => {
-                html += `<div style=\"background:#fff; border-radius:16px; box-shadow:0 2px 8px #eee; padding:18px; min-width:220px; max-width:260px; text-align:left; display:flex; flex-direction:column;\">
-                  ${item.image ? `<img src='${item.image}' alt='${item.name}' style='width:100%; height:180px; object-fit:cover; border-radius:12px; margin-bottom:10px;'>` : ''}
-                  <h4 style=\"font-size:1.1rem; font-weight:600; margin-bottom:6px;\">${item.name}</h4>
-                  <p style=\"margin:0 0 6px 0; font-weight:bold; color:#b45309;\">Price: ${item.price}</p>
-                  <ul style=\"padding-left:18px; font-size:0.98rem; color:#444;\">`;
-                // Category-specific details
-                if (seller.category === 'Burgers' && item.ingredients) {
-                  html += `<li><b>Ingredients:</b> ${item.ingredients.join(', ')}</li>`;
-                }
-                if (seller.category === 'Shoes') {
-                  if (item.size) html += `<li><b>Sizes:</b> ${item.size.join(', ')}</li>`;
-                  if (item.color) html += `<li><b>Color:</b> ${item.color}</li>`;
-                }
-                if (seller.category === 'Barber' && item.style) {
-                  html += `<li><b>Style:</b> ${item.style}</li>`;
-                  html += `<li><b>Duration:</b> ${item.duration}</li>`;
-                }
-                if (seller.category === 'Makeup' && item.style) {
-                  html += `<li><b>Style:</b> ${item.style}</li>`;
-                  html += `<li><b>Duration:</b> ${item.duration}</li>`;
-                }
-                if (seller.category === 'Event Planning' && item.services) {
-                  html += `<li><b>Services:</b> ${item.services.join(', ')}</li>`;
-                }
-                if (seller.category === 'PC Repair') {
-                  if (item.name) html += `<li><b>Service:</b> ${item.name}</li>`;
-                }
-                if (seller.category === 'Printing') {
-                  if (item.name) html += `<li><b>Service:</b> ${item.name}</li>`;
-                }
-                if (seller.category === 'Money Transfer' && item.currencies) {
-                  html += `<li><b>Currencies:</b> ${item.currencies.join(', ')}</li>`;
-                }
-                if (seller.category === 'Saloon') {
-                  if (item.name) html += `<li><b>Service:</b> ${item.name}</li>`;
-                }
-                if (seller.category === 'Meat') {
-                  if (item.name) html += `<li><b>Type:</b> ${item.name}</li>`;
-                }
-                if (seller.category === 'Sports Jersey') {
-                  if (item.team) html += `<li><b>Team:</b> ${item.team}</li>`;
-                  if (item.size) html += `<li><b>Sizes:</b> ${item.size.join(', ')}</li>`;
-                }
-                html += `</ul>
-                  <button class=\"add-to-cart-btn\" 
-                    data-id=\"${seller.id}\"
-                    data-name=\"${seller.name.replace(/"/g, '&quot;')}\"
-                    data-image=\"${seller.image}\"
-                    data-price=\"${item.price}\"
-                    data-itemname=\"${item.name.replace(/"/g, '&quot;')}\"
-                    data-itemimage=\"${item.image || seller.image}\"
-                    style=\"margin-top:auto; background:#10b981; color:#fff; border:none; border-radius:6px; padding:8px 18px; font-weight:bold; cursor:pointer; width:100%;\">Add to Cart</button>
-                </div>`;
-              });
-            } else {
-              html += '<p>No items/services listed for this seller.</p>';
-            }
-            html += '</div></div>';
-            document.getElementById('product-grid').innerHTML = html;
-            // Attach event listeners for Add to Cart buttons
-            document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
-                btn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const prod = {
-                        id: Number(this.getAttribute('data-id')),
-                        name: this.getAttribute('data-name'),
-                        image: this.getAttribute('data-image'),
-                        price: this.getAttribute('data-price'),
-                        itemName: this.getAttribute('data-itemname'),
-                        itemImage: this.getAttribute('data-itemimage')
-                    };
-                    addCartProduct(prod);
-                });
-            });
-          });
-    });
-    </script>
+    <section class="events-wrap" id="events">
+      <div class="section">
+        <div class="section-head">
+          <div><span class="kicker">What is next</span><h2>Events</h2></div>
+          <p>Community gatherings, celebrations, competitions and campus activities.</p>
+        </div>
+        <div class="card-grid">
+          <article class="event-card"><img src="freshers1.jpeg" alt="Freshers party"><div class="event-body"><h3>Freshers Party</h3><p>Meet new friends and celebrate the new academic term.</p><span class="date">Thursday, October 2025 · 4 PM–9 PM</span></div></article>
+          <article class="event-card"><img src="birthday 2.jpeg" alt="Birthday party"><div class="event-body"><h3>October Birthday Bash</h3><p>A birthday gathering for friends and loved ones.</p><span class="date">October–November 2025</span></div></article>
+          <article class="event-card"><img src="bble quiz.jpeg" alt="Bible quiz"><div class="event-body"><h3>Bible Quiz Saturdays</h3><p>Test your knowledge and represent your team.</p><span class="date">Every Saturday</span></div></article>
+          <article class="event-card"><img src="night out.jpeg" alt="Couples night"><div class="event-body"><h3>Couples Night Out</h3><p>A special evening of appreciation and celebration.</p><span class="date">October 28, 2025</span></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="sports">
+      <div class="section-head">
+        <div><span class="kicker">On the field</span><h2>Sports & fixtures</h2></div>
+        <p>Football, cycling and community games are open to all skill levels.</p>
+      </div>
+      <div class="sport-strip">
+        <article class="sport"><img src="zimwarriors.jpg" alt="Football match"><div><h3>Zim Ballers</h3><span>Weekend fixtures</span></div></article>
+        <article class="sport"><img src="cycling.jpeg" alt="Cycling"><div><h3>Cycling for Fun</h3><span>Friendly rides</span></div></article>
+        <article class="sport"><img src="games.jpeg" alt="Outdoor games"><div><h3>Outdoor Games</h3><span>Community competition</span></div></article>
+      </div>
+    </section>
+
+    <section class="section" id="updates">
+      <div class="section-head">
+        <div><span class="kicker">Community bulletin</span><h2>Latest updates</h2></div>
+        <p>Announcements and useful information for the community.</p>
+      </div>
+      <div class="updates">
+        <article class="update-card featured"><time datetime="2025-10-01">01 October 2025</time><h3>Welcome to the Africabiz community portal</h3><p>Browse the market, save items to your cart and send an order directly to a WhatsApp provider.</p></article>
+        <article class="update-card"><time datetime="2025-09-20">20 September 2025</time><h3>Freshers welcome activities announced</h3><p>Sports, music and social events are scheduled throughout the new term.</p></article>
+      </div>
+    </section>
+  </main>
+
+  <div class="cart-overlay" id="cartOverlay"></div>
+  <aside class="cart-drawer" id="cartDrawer" aria-label="Shopping cart">
+    <div class="cart-head"><h2>Your cart</h2><button id="closeCart" aria-label="Close cart">×</button></div>
+    <div class="cart-items" id="cartItems"></div>
+    <div class="cart-footer"><strong>Total: <span id="cartTotal">₹0</span></strong><button class="button" id="checkoutButton">Checkout on WhatsApp</button></div>
+  </aside>
+  <div class="toast" id="toast" role="status"></div>
+  <footer>&copy; <span id="year"></span> Africabiz · KIIT African Community</footer>
+  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
 </body>
 </html>

@@ -58,11 +58,18 @@ function getRatingSummary(productId) {
  * Then render the cart into the DOM.
  */
 function checkCart() {
-    var cookieValue = document.cookie
-        .split(';')
-        .find(row => row.trim().startsWith('listCart='));
-    if (cookieValue) {
-        listCart = JSON.parse(cookieValue.split('=')[1]);
+    try {
+        listCart = JSON.parse(localStorage.getItem('africabiz-cart') || '[]');
+    } catch (e) {
+        listCart = [];
+    }
+    if (!Array.isArray(listCart) || !listCart.length) {
+        var cookieValue = document.cookie
+            .split(';')
+            .find(row => row.trim().startsWith('listCart='));
+        if (cookieValue) {
+            try { listCart = JSON.parse(decodeURIComponent(cookieValue.split('=')[1])) || []; } catch (e) { listCart = []; }
+        }
     }
     addCartToHTML();
 }
