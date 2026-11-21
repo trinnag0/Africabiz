@@ -1,0 +1,289 @@
+[
+    {
+        "id": 2,
+        "name": "Lassy Crispy Burgers",
+        "price": "₹100",
+        "image": "burger1.webp",
+        "category": "Burgers",
+        "items": [
+            {"name": "Lassy Crispy sandwhiches", "price": "₹80", "ingredients": ["Lettuce","Cheese", "Mayo","Tomato","Onion", "mashed potatoes/eggs", "bread"], "image": "sandwhich.jpeg"},
+            {"name": "Classic Chicken Burger", "price": "₹100", "ingredients": ["Chicken patty", "Lettuce","Cheese", "Mayo","Tomato","Onion", "Bun"], "image": "chicken burger.jpeg"},
+            {"name": "Grilled Chicken  Burger", "price": "₹150", "ingredients": ["GrilledChicken", "Lettuce","Cheese", "Mayo","Tomato","Onion", "Bun"], "image": "grilledchicken.webp"},
+            {"name": "Chicken Overload Burger", "price": "₹200", "ingredients": ["Chicken kfc prime", "Lettuce","Cheese", "Mayo","Tomato","Onion", "Bun"], "image": "chickenOverload.jpeg"},
+            {"name": "Fried Chicken Burger", "price": "₹160", "ingredients": ["Fried Chicken", "Lettuce","Cheese", "Mayo","Tomato","Onion", "Bun"], "image": "fried chickenburger.jpeg"},
+            {"name": "Crispy Veggie Burger", "price": "₹90", "ingredients": ["Veg patty", "Lettuce", "Tomato", "Onion", "Bun"], "image": "Crispy Veggie burger.jpeg"}
+        ]
+    },
+    {
+        "id": 12,
+        "name": "BEEF",
+        "price": "varies",
+        "image": "beef1.webp",
+        "category": "Meat",
+        "items": [
+            {"name": "Beef Steak", "price": "₹400/kg"},
+            {"name": "Beef Mince", "price": "₹350/kg"}
+        ]
+    },
+    {
+        "id": 3,
+        "name": "Event-Planning",
+        "price": "₹150 and above",
+        "image": "evenntplanning.webp",
+        "category": "Event Planning",
+        "items": [
+            {"name": "Birthday Party", "price": "₹1500 and above", "services": ["Decor", "Cake", "Music","Photography","Venue"], "image":"birthday 2.jpeg"},
+            {"name": "Date Planning", "price": "₹1000 and above", "services": ["Venue", "Dress-code hints", "Photography"], "image":"Date2.jpeg"},
+            {"name": "Anniversary celebration", "price": "₹1000 and above", "services": ["Venue", "Dress-code hints", "Photography"], "image":"ann1.jpeg"},
+            {"name": "Graduation party", "price": "₹1000 and above", "services": ["Venue","Suit-rentals", "Photography"], "image":"graduationP2.jpeg"},
+            {"name": "Corporate Event", "price": "₹3000 and above", "services": ["Venue", "AV Setup", "Snacks","Photography"], "image": "corporate evnt.jpeg"}
+        ]
+    },
+    {
+        "id": 1,
+        "name": "Mnash One stop Barber",
+        "price": "₹80 and above",
+        "image": "Barber.webp",
+        "category": "Barber",
+        "items": [
+            {"name": "Bald", "price": "₹100", "style": "Classic plain", "duration": "20 min","image": "bald.webp"},
+            {"name": "Beard Trim", "price": "₹50", "style": "Any", "duration": "10 min","image": "beardtrim.webp"},
+            {"name": "Afro clean", "price": "₹150", "style": "Fade-clean", "duration": "35 min","image": "Afro.jpeg"},
+            {"name": "Classic-Casual", "price": "₹150", "style": "Star-fade", "duration": "35 min","image": "b1.jpeg"},
+            {"name": "Gentleman-Deluxe", "price": "₹150", "style": "Low-Fade", "duration": "35 min","image": "b2.jpeg"},
+            {"name": "YoungBoy", "price": "₹150", "style": "Fade/Modern", "duration": "35 min","image": "b3.jpeg"},
+            {"name": "LowTaper", "price": "₹150", "style": "Fade-premium", "duration": "35 min","image": "b4.jpeg"}, 
+            {"name": "Super-Hawk", "price": "₹150", "style": "Mohawk-Fade", "duration": "35 min","image": "b6.jpeg"}      
+        ]
+    },
+    {
+        "id": 14,
+        "name": "Roy-Classic Trims",
+        "price": "₹85 and above",
+        "image": "barber2.webp",
+        "category": "Barber",
+        "items": [
+            {"name": "Buzzcut", "price": "₹100", "style": "Classic plain", "duration": "20 min","image": "buzzcut.jpeg"},
+            {"name": "Judeprime", "price": "₹50", "style": "Any", "duration": "45 min","image": "bestJud.jpeg"},
+            {"name": "Afro clean", "price": "₹150", "style": "Fade-clean", "duration": "35 min","image": "curtains1.jpeg"},
+            {"name": "Jude", "price": "₹150", "style": "Star-fade", "duration": "35 min","image": "jude.jpeg"},
+            {"name": "Low taper fade", "price": "₹150", "style": "Low-Fade", "duration": "35 min","image": "low taper fade.jpeg"},
+            {"name": "Messy cut", "price": "₹150", "style": "Fade/Modern", "duration": "35 min","image": "messy cut.jpeg"},
+            {"name": "Medium fade", "price": "₹150", "style": "Fade-premium", "duration": "35 min","image": "textured crop.jpeg"}, 
+            {"name": "Nago-blend", "price": "₹150", "style": "Mohawk-Fade", "duration": "35 min","image": "undercut.jpeg"}  
+        ]
+    },
+    {
+        "id": 8,
+        "name": "Noku's Saloon",
+        "price": "₹200 and above",
+        "image": "saloon.webp",
+        "category": "Saloon",
+        "items": [
+            {"name": "Braiding", "price": "₹400","image":"noku1.jpeg"},
+            {"name": "Noku style-1", "price": "₹350","image":"noku2.jpeg"},
+            {"name": "Noku style-2", "price": "₹350","image":"noku3.jpeg"},
+            {"name": "Noku style-3", "price": "₹350","image":"noku4.jpeg"},
+            {"name": "Noku style-4", "price": "₹350","image":"noku5.jpeg"},
+            {"name": "Noku style-5", "price": "₹350","image":"noku6.jpeg"},
+            {"name": "Noku style-6", "price": "₹350","image":"noku7.jpeg"},
+            {"name": "Noku style-7", "price": "₹350","image":"noku8.jpeg"},
+            {"name": "Noku style-8", "price": "₹350","image":"noku9.jpeg"},
+            {"name": "Noku style-9", "price": "₹350","image":"noku10.jpeg"},
+            {"name": "Men-Special", "price": "₹350","image":"noqspecial1.jpeg"},
+            {"name": "Classy Relaxing", "price": "₹350","image":"noqspecial2.jpeg"},
+            {"name": "Stylish", "price": "₹500","image":"noqspecial3.jpeg"}
+        ]
+    },
+    {
+        "id": 17,
+        "name": "Your Hairdresser Melly",
+        "price": "₹250 and above",
+        "image": "yourmelly.webp",
+        "category": "Saloon",
+        "items": [
+            {"name": "Braiding", "price": "₹400","image":"melz1.jpeg"},
+            {"name": " style-1", "price": "₹350","image":"melz2.jpeg"},
+            {"name": " style-2", "price": "₹350","image":"melz3.jpeg"},
+            {"name": " style-3", "price": "₹350","image":"melz4.jpeg"},
+            {"name": " style-4", "price": "₹350","image":"melz5.jpeg"},
+            {"name": " style-5", "price": "₹350","image":"melz6.jpeg"},
+            {"name": " style-6", "price": "₹350","image":"melz7.jpeg"},
+            {"name": " style-7", "price": "₹350","image":"melz8.jpeg"},
+            {"name": " style-8", "price": "₹350","image":"melz9.jpeg"}
+        ]
+    },
+    
+    {
+        "id": 4,
+        "name": "Make_It_Up with_Tariey",
+        "price": "₹150 and above ",
+        "image": "makeup1.webp",
+        "category": "Makeup",
+        "items": [
+            {"name": "Date Makeup", "price": "₹2000", "style": "Traditional/Modern", "duration": "2 hr","image":"date.jpeg"},
+            {"name": "Graduation Makeup", "price": "₹2000", "style": "Traditional/Modern", "duration": "2 hr","image":"makeup1.jpeg"},
+            {"name": "Party Makeup", "price": "₹800", "style": "Glam", "duration": "1 hr","image":"party makeup.jpeg"},
+            {"name": "Everyday Makeup", "price": "₹400", "style": "Natural", "duration": "30 min","image":"makeup2.jpeg"},
+            {"name": "Manicure & Pedicure", "price": "₹500", "style": "Natural", "duration": "30 min","image":"makeup3.jpeg"},
+            {"name": "Eye lashes", "price": "₹400", "style": "Natural", "duration": "30 min","image":"eyelash.jpeg"},
+            {"name": "Everyday Makeup-2", "price": "₹400", "style": "Natural", "duration": "30 min","image":"makeup4.jpeg"},
+            {"name": "Everyday Makeup-3", "price": "₹400", "style": "Natural", "duration": "30 min","image":"makeup5.jpeg"},
+            {"name": "Everyday Makeup-4", "price": "₹400", "style": "Natural", "duration": "30 min","image":"makeup 7.jpeg"},
+            {"name": "Simple Makeup", "price": "₹400", "style": "Natural", "duration": "30 min","image":"simple6.jpeg"},
+            
+            {"name": "Nails type-1", "price": "₹400", "style": "Natural", "duration": "30 min","image":"n1.jpeg"},
+            {"name": "Nails type-2", "price": "₹400", "style": "Natural", "duration": "30 min","image":"n2.jpeg"},
+            {"name": "Nails type-3", "price": "₹400", "style": "Natural", "duration": "30 min","image":"n3.jpeg"},
+            {"name": "Nails type-4", "price": "₹400", "style": "Natural", "duration": "30 min","image":"n4.jpeg"},
+            {"name": "Nails type-5", "price": "₹400", "style": "Natural", "duration": "30 min","image":"n5.jpeg"},
+            {"name": "Nails type-6", "price": "₹400", "style": "Natural", "duration": "30 min","image":"n6.jpeg"},
+            {"name": "Toes type-7", "price": "₹400", "style": "Natural", "duration": "30 min","image":"n7toes.jpeg"},
+            {"name": "Nails type-8", "price": "₹400", "style": "Natural", "duration": "30 min","image":"n8.jpeg"},
+            {"name": "Nails type-9", "price": "₹400", "style": "Natural", "duration": "30 min","image":"n9.jpeg"},
+            {"name": "Nails type-10", "price": "₹400", "style": "Natural", "duration": "30 min","image":"n10.jpeg"},
+            {"name": "Nails type-11", "price": "₹400", "style": "Natural", "duration": "30 min","image":"n11.jpeg"},
+            {"name": "Nails type-12", "price": "₹400", "style": "Natural", "duration": "30 min","image":"n12.jpeg"}
+
+            
+
+        ]
+    },
+    {
+        "id": 5,
+        "name": "Pc-Repair",
+        "price": "₹200-₹1500",
+        "image": "Pcrepair1.webp",
+        "category": "PC Repair",
+        "items": [
+            {"name": "Virus Removal", "price": "₹200","image":"virus.jpeg"},
+            {"name": "Screen Replacement", "price": "₹1200","image":"scrnrep"},
+            {"name": "Keyboard Repair and keys sorting", "price": "₹300","image":""},
+            {"name": "Software Installation", "price": "₹300","image":"softwareinst.jpeg"},
+            {"name": "Windows Installation", "price": "₹500","image":"wininst"}
+        ]
+    },
+    {
+        "id": 6,
+        "name": "JACKY PRINTERS",
+        "price": "₹5 and above",
+        "image": "printing1.webp",
+        "category": "Printing",
+        "items": [
+            {"name": "Black & White Print", "price": "₹5/page","image":"Bw.jpeg"},
+            {"name": "Color Print", "price": "₹10/page","image":"Cprint.jpeg"},
+            {"name": "Lamination", "price": "₹20/sheet","image":"lamminate.jpeg"}
+        ]
+    },
+    {
+        "id": 7,
+        "name": "Smoek Money transfers and Exchange",
+        "price": "6% charge on transfer",
+        "image": "money1.webp",
+        "category": "Money Transfer",
+        "items": [
+            {"name": "Money Transfer", "price": "6% charge", "currencies": ["USD", "INR", "ZAR"]},
+            {"name": "Currency Exchange", "price": "Varies", "currencies": ["USD", "INR", "ZAR"]}
+        ]
+    },
+    {
+        "id": 15,
+        "name": "Kacherz Loans",
+        "price": "For all your emergency loans and backups",
+        "image": "loan3.webp",
+        "category": "Student loans",
+        "items": [
+            {"name": "Annual loan", "price": "5% charge", "currencies": ["USD", "INR", "ZAR"]},
+            {"name": "Instant loan", "price": "Varies", "currencies": ["USD", "INR", "ZAR"]}
+        ]
+    },
+    
+    {
+        "id": 9,
+        "name": "Ark Wear",
+        "price": "varies",
+        "image": "shoe1.webp",
+        "category": "Shoes",
+        "items": [
+            {"name": "Nike Air Max", "price": "₹2500", "size": ["7", "8", "9", "10"], "color": "all types", "image": "airMax.jpeg"},
+            {"name": "Nike Air Force1", "price": "₹2500", "size": ["7", "8", "9", "10"], "color": "Black/White", "image": "Af1white.jpeg"},
+            {"name": "Nike AF1 B/W", "price": "₹2500", "size": ["7", "8", "9", "10"],"image": "AF1.jpeg"},
+            {"name": "Adidas Campus(all)", "price": "₹2500", "size": ["7", "8", "9", "10"], "color": "ALL", "image": "campuses.jpeg"},
+            {"name": "J1-low-cut(all)", "price": "₹2500", "size": ["7", "8", "9", "10"], "color": "All", "image": "j1s_low.jpeg"},
+            {"name": "Retros(all)", "price": "₹2500", "size": ["7", "8", "9", "10"], "color": "all types", "image": "retros.jpeg"},
+            {"name": "J1-high-cut(all)", "price": "₹2500", "size": ["7", "8", "9", "10"], "color": "ALL", "image": "j1s_high.jpeg"},
+            {"name": "Adidas- Sambas(all)", "price": "₹2500", "size": ["7", "8", "9", "10"], "color": "ALL", "image": "sambas.jpeg"},
+            {"name": "Ladies smart sandals(all)", "price": "₹2500", "size": ["7", "8", "9", "10"], "color": "Black/White", "image": "typepushes.jpeg"},
+            {"name": "TravisScott(retro)", "price": "₹2500", "size": ["7", "8", "9", "10"], "color": "Black", "image": "trav.jpeg"},
+            {"name": "New-Balance", "price": "₹2500", "size": ["7", "8", "9", "10"], "color": "ALL", "image": "NB.jpeg"},
+            {"name": "Big-sole styled(ladies)", "price": "₹2500", "size": ["7", "8", "9", "10"], "color": "Black", "image": "gogo2.jpeg"},
+            {"name": "Cactus Jack(all in picture)", "price": "₹2500", "size": ["7", "8", "9", "10"], "color": "all types", "image": "cactus1.jpeg"},
+            {"name": "Nike_Dunkees(all)", "price": "₹2500", "size": ["7", "8", "9", "10"], "color": "ALL", "image": "dunky.jpeg"},
+            {"name": "Adidas classy", "price": "₹2500", "size": ["7", "8", "9", "10"], "color": "Only1", "image": "adidas.jpeg"},
+            {"name": "Ladies heels", "price": "₹2500", "size": ["5", "6", "7", "8"], "color": "Black/Silve-Gold", "image": "gogo.jpeg"},
+            {"name": "Cactus Jack-low", "price": "₹2500", "size": ["7", "8", "9", "10"], "color": "Black/White/Green/Blue", "image": "cacti.jpeg"},
+            {"name": "Puma suede sneaker", "price": "₹2500", "size": ["7", "8", "9", "10"], "color": "Black/White/Green/Blue", "image": "puma.jpeg"},
+            {"name": "New Balance white comfort", "price": "₹2500", "size": ["7", "8", "9", "10"], "color": "Black/White", "image": "NB2.jpeg"},
+            {"name": "Ladies pink NIKE", "price": "₹2500", "size": ["6","7", "8", "9", "10"], "color": "Pink", "image": "lady pink.jpeg"},
+            {"name": "J4 NikeSB Navy", "price": "₹2500", "size": ["7", "8", "9", "10"], "color": "Navy-Blue", "image": "sbj4.jpeg"},
+            {"name": "Sandals(ladies)", "price": "₹2500", "size": ["6", "7", "8"], "color": "Only", "image": "slop.jpeg"},
+            {"name": "BigSole Converse", "price": "₹2500", "size": ["6", "7", "8"], "color": "Black/White/Yellow", "image": "lady 2.jpeg"},
+            {"name": "Nike Air Superstar", "price": "₹2200", "size": ["6", "7", "8", "9"], "color": "White/Black", "image": "kkid.jpeg"}
+        ]
+    },
+    {
+        "id": 10,
+        "name": "Money Changer",
+        "price": "varies",
+        "image": "moneychanger.webp",
+        "category": "Money Changer",
+        "items": [
+            {"name": "USD to INR", "price": "Varies"},
+            {"name": "INR to ZAR", "price": "Varies"}
+        ]
+    },
+   
+    {
+        "id": 13,
+        "name": "SPORTS JERSEY PRINTINGS",
+        "price": "₹1000 and above",
+        "image": "jersey1.webp",
+        "category": "Sports Jersey",
+        "items": [
+            {"name": "Football Jersey", "price": "₹1200", "team": "Manchester United", "size": ["S", "M", "L", "XL"]},
+            {"name": "Volleyball Jersey", "price": "₹1200", "team": "Manchester United", "size": ["S", "M", "L", "XL"]},
+            {"name": "Basketball Jersey", "price": "₹1300", "team": "Lakers", "size": ["M", "L", "XL"]}
+        ]
+    },
+    {
+        "id": 16,
+        "name": "Joseph Smart Mart",
+        "price": "₹1000 and above",
+        "image": "jersey3.webp",
+        "category": "Sports Jersey,slides,etc",
+        "items": [
+            {"name": "Manchester-United", "price": "₹800", "image": "Manu.jpeg", "size": ["S", "M", "L", "XL"]},
+            {"name": "Barcelona", "price": "₹800", "image": "barcablack.jpeg", "size": ["S", "M", "L", "XL"]},
+            {"name": "Real Madrid", "price": "₹800", "image": "madrid black.jpeg", "size": ["S", "M", "L", "XL"]},
+            {"name": "Barcelona 2", "price": "₹800", "image": "barcaCream.jpeg", "size": ["S", "M", "L", "XL"]},
+            {"name": "Barcelona 3", "price": "₹800", "image": "Barca.jpeg", "size": ["S", "M", "L", "XL"]},
+            {"name": "Manchester City", "price": "₹800", "image": "manCblack.jpeg", "size": ["S", "M", "L", "XL"]},
+            {"name": "Argentina", "price": "₹800", "image": "argentina.jpeg", "size": ["S", "M", "L", "XL"]},
+            {"name": "Arsenal", "price": "₹800", "image": "arsenal.jpeg", "size": ["S", "M", "L", "XL"]},
+            {"name": "France", "price": "₹800", "image": "franceWhite.jpeg", "size": ["S", "M", "L", "XL"]},
+            {"name": "Bayern Munchen", "price": "₹800", "image": "BayernRed.jpeg", "size": ["S", "M", "L", "XL"]},
+            {"name": "Al Nasr Jersey", "price": "₹850", "image": "alnasr.jpeg", "size": ["M", "L", "XL"]},
+            {"name": "Real Madrid 2", "price": "₹800", "image": "madridall.jpeg", "size": ["S", "M", "L", "XL"]},
+            {"name": "Inter Miami", "price": "₹800", "image": "interMiami.jpeg", "size": ["S", "M", "L", "XL"]},
+            {"name": "Inter Milan", "price": "₹800", "image": "InterMilan.jpeg", "size": ["S", "M", "L", "XL"]},
+            {"name": "PSG", "price": "₹800", "image": "psg1.jpeg", "size": ["S", "M", "L", "XL"]},
+            {"name": "PSG2", "price": "₹800", "image": "psg2.jpeg", "size": ["S", "M", "L", "XL"]},
+            {"name": "Liverpool", "price": "₹800", "image": "liverp_red.jpeg", "size": ["S", "M", "L", "XL"]},
+            {"name": "Y-Adidas slides", "price": "₹800", "image": "Y-slides.jpeg", "size": ["S", "M", "L", "XL"]},
+            {"name": "Gucci Slides", "price": "₹800", "image": "gucci slides.jpeg", "size": ["S", "M", "L", "XL"]},
+            {"name": "Tottenham", "price": "₹800", "image": "tott.jpeg", "size": ["S", "M", "L", "XL"]}
+
+
+        ]
+    }
+]

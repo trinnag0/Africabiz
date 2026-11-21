@@ -1,0 +1,690 @@
+/*
+    Base typography and layout defaults.
+    - Change font-family and font-size to adjust the overall look and readability
+    - overflow-x is hidden to prevent horizontal scroll when the cart slides in
+*/
+
+body {
+    font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
+    background: linear-gradient(120deg, #f8fafc 0%, #e0e7ff 100%);
+    min-height: 100vh;
+    margin: 0;
+    color: #222;
+    width: 100%;
+}
+
+/* Remove underlines from all links site-wide */
+a {
+    text-decoration: none;
+}
+
+/* Logo area at top-left; tweak size/shape here */
+#logo{
+    height: 48px; /* Logo height */
+    width :96px; /* Logo width */
+    border-radius: 50%; /* Circle crop */
+    float: left; /* Keep logo at left edge */
+    padding:0%; /* No inner padding */
+}
+
+/* Main content wrapper. This shifts left when cart opens (see cart.js). */
+.container {
+    background: rgba(255,255,255,0.85);
+    border-radius: 32px;
+    box-shadow: 0 8px 32px rgba(75,44,230,0.10), 0 1.5px 6px #e0e7ff;
+    padding: 32px 18px 48px 18px;
+    margin-top: 32px;
+    margin-bottom: 32px;
+    max-width:100%;
+    width: 95vw;
+}
+
+/* Cart icon image size inside header */
+/*header img {
+    width: 50px;
+    float: right;
+} */
+
+/* Header layout: title and cart icon on a single row */
+/*header {
+    background: linear-gradient(90deg, #4b2ce6 0%, #7a7fe2 100%);
+    border-radius: 24px;
+    box-shadow: 0 2px 12px rgba(75,44,230,0.08);
+    padding: 24px 32px;
+    margin-bottom: 32px;
+    color: #fff;
+}
+header h1 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin: 0;
+}*/
+.iconCart {
+    position: fixed;
+    z-index: 1;
+    cursor: pointer;
+    background: none;
+    border-radius: 50%;
+    box-shadow: none;
+    width: auto;
+    height: auto;
+    float: right;
+
+    vertical-align: middle;
+    margin-top: -8px;
+    margin-left: 12px;
+}
+.iconCart:hover {
+    box-shadow: 0 4px 24px #4b2ce688;
+    transform: scale(1.08);
+    background: #f4f6fb;
+}
+.iconCart img {
+    width: 50px;
+    height: auto;
+    filter: drop-shadow(0 2px 8px #4b2ce6);
+    border-radius: 50%;
+    background: transparent;
+    padding: 0;
+    vertical-align: middle;
+}
+.totalQuantity {
+    background: #e6572c;
+    box-shadow: 0 2px 8px #e6572c44;
+    border: 2px solid #fff;
+}
+
+/* Wrapper to position the quantity bubble relative to cart icon */
+.iconCart {
+    position: relative; /* Anchor for absolute badge */
+    z-index: 1; /* Keep above other elements when sliding */
+}
+
+/* Circular quantity badge at top-right of cart icon */
+.totalQuantity {
+    position: absolute;
+    top: 0;
+    right: 0px;
+    font-size: x-large;
+    background-color: #be1010; /* Badge color: change for theme */
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    color: #fff; /* Badge text color */
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translate(20px); /* Nudge away from icon */
+}
+
+/* Grid of products. Adjust repeat(3, 1fr) for number of columns */
+.listProduct {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+/* Force 2 items per row on mobile */
+@media (max-width: 600px) {
+  .listProduct {
+    grid-template-columns: repeat(2, 1fr) !important;
+    max-width: 100%;
+    padding: 0 16px;
+  }
+}
+
+
+.listProduct .item {
+    background: rgba(255,255,255,0.95);
+    border-radius: 24px;
+    box-shadow: 0 4px 24px #4b2ce61a, 0 1.5px 6px #e0e7ff;
+    overflow: hidden;
+    position: relative;
+    transition: box-shadow 0.2s, transform 0.2s;
+    border: 1.5px solid #e0e7ff;
+    box-sizing: border-box;
+    max-width:300px;
+}
+.listProduct .item:hover {
+    box-shadow: 0 8px 32px #4b2ce633, 0 2px 12px #e0e7ff;
+    transform: translateY(-4px) scale(1.025);
+    border-color: #7a7fe2;
+}
+/* Product thumbnail sizing and cover behavior */
+.listProduct .item img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-top-left-radius: 24px;
+    border-top-right-radius: 24px;
+    filter: brightness(0.98) saturate(1.15) drop-shadow(0 2px 8px #4b2ce622);
+    transition: filter 0.2s;
+}
+.listProduct .item:hover img {
+    filter: brightness(1.04) saturate(1.25) drop-shadow(0 4px 16px #4b2ce644);
+}
+
+/* Product name styling */
+.listProduct .item h2 {
+    font-size: 1.3rem;
+    margin: 18px 0 6px 0;
+    color: #4b2ce6;
+    text-align: center;
+}
+
+/* Product price styling */
+.listProduct .item .price {
+    font-size: 1.1rem;
+    color: #e6572c;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+/* Needed to position the Add To Cart button over the image */
+.listProduct .item {
+    position: relative;
+}
+
+/* Hidden Add To Cart button that appears on hover */
+.listProduct .item button {
+    color: #fff;
+    background: rgb(37, 211, 102);
+    border: none;
+    border-radius: 16px;
+    padding: 14px 32px;
+    font-size: 1rem;
+    font-weight: 600;
+    box-shadow: 0 2px 8px rgba(37, 211, 102, 0.44);
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+    opacity: 1;
+    position: static;
+    width: auto;
+    left: unset;
+    top: unset;
+    transform: none;
+}
+.listProduct .item button:hover {
+    background: hsl(173, 77%, 31%);
+    transform: scale(1.07);
+}
+
+/*
+    Slide-in cart panel.
+    - width must match the translateX distance in cart.js (400px)
+    - right: -100% keeps it off-screen until opened
+*/
+.cart {
+    color: #fff;
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 400px;
+    height: 90vh;
+    background: rgba(24, 25, 28, 0.98);
+    display: grid;
+    grid-template-rows: 50px 1fr 50px;
+    gap: 20px;
+    transition: right 1s;
+    box-shadow: -8px 0 32px #4b2ce633;
+    border-top-left-radius: 24px;
+    border-bottom-left-radius: 24px;
+    border: 2px solid #7a7fe2;
+    z-index: 1000;
+}
+.cart h2 {
+    color: #e8bc0e;
+    font-size: 1.5rem;
+    letter-spacing: 1px;
+    padding: 20px 0 0 20px;
+    margin: 0;
+}
+/* Cart line item layout */
+.cart .listCart .item {
+    display: grid;
+    grid-template-columns: 44px 1fr 54px;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+    background: rgba(255,255,255,0.10);
+    border-radius: 12px;
+    box-shadow: 0 2px 8px #4b2ce622;
+    padding: 6px 8px;
+    border: 1px solid #7a7fe2;
+}
+/* Cart item thumbnail */
+.cart .listCart img {
+    width: 44px;
+    height: 44px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 1px 4px #4b2ce622;
+    background: #fff;
+}
+
+/* Product name in cart emphasized */
+.cart .listCart .item .name {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #e8bc0e;
+    margin-bottom: 2px;
+}
+
+/* Quantity control container */
+.cart .listCart .item .quantity {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+    justify-content: center;
+}
+
+/* Scrollable list area for many cart items */
+.cart .listCart {
+    padding: 16px 12px 0 12px;
+    overflow: auto;
+    max-height: 70vh;
+}
+
+/* Hide default scrollbar for a cleaner look */
+.cart .listCart::-webkit-scrollbar {
+    width: 0;
+}
+
+/* Footer buttons in cart: Close and Checkout */
+.cart .buttons {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Two equal buttons */
+    text-align: center;
+}
+
+/* Button base styles */
+.cart .buttons div {
+    background-color: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Ensure checkout link text stays visible */
+.cart .buttons a {
+    color: #fff;
+}
+
+/* Highlight checkout action with accent color */
+.cart .buttons .checkout {
+    background: linear-gradient(90deg, #e8bc0e 0%, #4b2ce6 100%);
+    color: #fff;
+    font-weight: bold;
+    border-radius: 0 0 0 24px;
+    box-shadow: 0 2px 8px #e8bc0e44;
+}
+.cart .buttons .close {
+    background: #222;
+    color: #fff;
+    border-radius: 0 0 24px 0;
+}
+
+/*
+    Checkout page layout and styles
+    - This section styles a two-column checkout: left (cart), right (form)
+*/
+.checkoutLayout {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two columns */
+    gap: 50px;
+    padding: 20px;
+}
+
+/* Right column card styling (form container) */
+.checkoutLayout .right {
+    background-color: #4b2ce6; /* Form background */
+    border-radius: 20px;
+    padding: 40px;
+    color: #fff;
+}
+
+/* Thumbnails in the checkout list */
+.checkoutLayout .list img {
+    height: 70px;
+}
+
+/* Checkout form grid */
+.checkoutLayout .right .form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    border-bottom: 1px solid #7a7fe2; /* Divider line */
+    padding-bottom: 20px;
+}
+
+/* Make first 3 groups span full width (e.g., name, email, address) */
+.checkoutLayout .form .group:nth-child(-n+3) {
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+
+/* Inputs and selects inside the form */
+.checkoutLayout .form .input,
+.checkoutLayout .form .select {
+    width: 100%;
+    padding: 10px 20px;
+    border-radius: 20px;
+    margin-top: 10px;
+    border: none;
+    background-color: #6a6fc9;
+    color: #fff;
+}
+
+/* Emphasize price column in summary rows */
+.checkoutLayout .row div:nth-child(2) {
+    font-weight: bold;
+    font-size: x-large;
+}
+
+/* Checkout submit button */
+.buttonCheckout {
+    width: 100%;
+    height: 40px;
+    border: none;
+    border-radius: 20px;
+    margin-top: 20px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #4b2ce6; /* Matches .right background */
+}
+
+/* Return-to-cart section header spacing */
+.returnCart h1 {
+    border-top: 1px solid #eee;
+    padding: 20px 0;
+}
+
+/* Larger thumbnails in return cart list */
+.returnCart .list .item img {
+    height: 80px;
+}
+
+/* Return cart item card */
+.returnCart .item {
+    display: grid;
+    grid-template-columns: 80px 1fr 50px 80px; /* thumb | name | qty | price */
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 30px;
+    padding: 0 10px;
+    box-shadow: 0 10px 20px #555;
+    border-radius: 20px;
+}
+
+/* Emphasize name and price in return cart */
+.returnCart .item .name,
+.returnCart .item .returnPrice {
+    font-size: x-large;
+    font-weight: bold;
+}
+
+.add-to-cart-message {
+    position: fixed;
+    top: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #4b2ce6;
+    color: #fff;
+    padding: 16px 32px;
+    border-radius: 16px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.18);
+    z-index: 9999;
+    opacity: 1;
+    transition: opacity 0.6s;
+    pointer-events: none;
+}
+.add-to-cart-message.fade-out {
+    opacity: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 900px) {
+    .container {
+        width: 98vw;
+        max-width: 100%;
+        padding: 8px 2vw;
+    }
+    .listProduct {
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+    }
+    .cart {
+        width: 100vw;
+        border-radius: 0;
+        border: none;
+    }
+}
+@media (max-width: 600px) {
+    .container {
+        width: 100vw;
+        max-width: 100vw;
+        padding: 2vw 0;
+        margin: 0;
+        border-radius: 0;
+        box-shadow: none;
+    }
+    .listProduct {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+    .cart {
+        width: 100vw;
+        border-radius: 0;
+        border: none;
+    }
+    .cart .listCart .item {
+        grid-template-columns: 32px 1fr 32px;
+        gap: 6px;
+        padding: 2px 2px;
+    }
+    .cart .listCart img {
+        width: 32px;
+        height: 32px;
+    }
+}
+
+.cart .listCart .item .quantity button {
+    background: #4b2ce6;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    width: 28px;
+    height: 28px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    margin: 0 2px;
+    transition: background 0.2s, color 0.2s;
+    font-weight: bold;
+    box-shadow: 0 1px 4px #4b2ce622;
+    outline: none;
+}
+.cart .listCart .item .quantity button:hover {
+    background: #e8bc0e;
+    color: #222;
+}
+
+
+
+ .header {
+            background: linear-gradient(90deg, #7b5cff 0%, #5b8cff 100%);
+            color: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            background: linear-gradient(90deg, #4b2ce6 0%, #7a7fe2 100%);
+            box-shadow: 0 2px 12px rgba(75,44,230,0.08);
+            padding: 1em;
+            margin-bottom: 32px;
+            color: #fff;
+            box-sizing: border-box;
+            position: sticky;
+            top: 0;
+            z-index:10;
+        }
+        .header-row {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          flex-wrap: wrap;
+        }
+
+        .header .header-content {
+            display: flex;
+            align-items: center;
+            gap: 1em;
+        }
+        .menu-icon {
+            font-size: 2rem;
+            margin-right: 24px;
+            cursor: pointer;
+        }
+        .header-content,
+
+.header-content,
+.iconCart,
+.search-bar-container {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+/*.header.scrolled{
+    position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  z-index:100;
+
+} */
+
+        .logo-title {
+            display: flex;
+            flex-direction: column;
+        }
+        .logo-title span:first-child {
+            font-size: 1.7rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+        .logo-title span:last-child {
+            font-size: 1rem;
+            color: #e0e0e0;
+        }
+        .search-bar-container {
+            margin-top: 1em;
+            width:100%;
+        }
+        .search-bar {
+            position: relative;
+            width: 100%;
+            max-width: 100%;
+            display:flex;
+            flex-direction:row;
+        }
+        @media (max-width: 768px) {
+          .search-bar {
+            width: 100%;
+          }
+        }
+
+         .search-input {
+            width: 100%;
+            padding: 16px 48px 16px 24px;
+            border-radius: 24px;
+            border: none;
+            font-size: 1.1rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+        .search-icon {
+          position: absolute;
+          right: 0.5rem;
+          top: 50%;
+          transform: translateY(-50%);
+          background: none;
+          border: none;
+          color: #555;
+          font-size: 1rem;
+          cursor: pointer;
+        } 
+
+        /* Sidebar styles */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 300px;
+            height: 100%;
+            background: linear-gradient(180deg, #7b5cff 0%, #5b8cff 100%);
+            color: white;
+            box-shadow: 2px 0 8px rgba(0,0,0,0.08);
+            z-index: 1000;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+            padding-top: 32px;
+        }
+        .sidebar.open {
+            transform: translateX(0);
+        }
+        .sidebar-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 24px 24px 24px;
+        }
+        .sidebar-header h2 {
+            margin: 0;
+            font-size: 1.4rem;
+            font-weight: bold;
+        }
+        .close-btn {
+            font-size: 1.5rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: white;
+        }
+        .sidebar-links {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            padding: 0 32px;
+        }
+        .sidebar-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            transition: color 0.2s;
+        }
+        .sidebar-links a:hover {
+            color: #ffd700;
+        }
+        /* Overlay styles */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0,0,0,0.3);
+            z-index: 999;
+            display: none;
+        }
+        .overlay.show {
+            display: block;
+        }

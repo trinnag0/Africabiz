@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<!--
+  Page: checkout.html
+  Purpose: Checkout form with address, country selection, and totals.
+  Author: [Your Name]
+  Last Updated: 2025-08-21
+-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <link rel="stylesheet" href="cart.css">
+    <link rel="stylesheet" href="checkout.css">
+</head>
+<body>
+    
+    <div class="container">
+        <div class="checkoutLayout">
+            <div class="returnCart">
+                <a href="cart.html">Keep Shopping</a>
+                <h1>LIST PRODUCT IN CART</h1>
+                <div class="list">
+                    <!-- Products will be dynamically added here -->
+                </div>
+            </div>
+            <div class="right">
+                <h1>CHECKOUT</h1>
+                <div class="form">
+                    <div class="group">
+                        <label for="name">FULL Name</label>
+                        <input type="text" name="name" id="name"> 
+                    </div>
+                    <div class="group">
+                        <label for="phone">Phone number</label>
+                        <input type="text" name="phone" id="phone">
+                    </div>
+                    <div class="group">
+                        <label for="address">Address</label>
+                        <select name="address" id="address">
+                            <option value="">Choose</option>
+                            <optgroup label="Queens Castle">
+                                <option value="Queens Castle 1">Queens Castle 1</option>
+                                <option value="Queens Castle 2">Queens Castle 2</option>
+                                <option value="Queens Castle 3">Queens Castle 3</option>
+                                <option value="Queens Castle 4">Queens Castle 4</option>
+                                <option value="Queens Castle 5">Queens Castle 5</option>
+                                <option value="Queens Castle 6">Queens Castle 6</option>
+                                <option value="Queens Castle 7">Queens Castle 7</option>
+                                <option value="Queens Castle 8">Queens Castle 8</option>
+                            </optgroup>
+                            <optgroup label="KingsPalace">
+                                <option value="KingsPalace 26">KingsPalace 26</option>
+                                <option value="KingsPalace 8">KingsPalace 8</option>
+                                <option value="KingsPalace 6">KingsPalace 6</option>
+                                <option value="KingsPalace 7">KingsPalace 7</option>
+                                <option value="KingsPalace 10">KingsPalace 10</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                    <div class="group">
+                        <label for="country">COUNTRY</label>
+                        <select name="country" id="country">
+                            <option value="">Choose</option>
+                            <option value="DZ">ALGERIA</option>
+                            <option value="AO">ANGOLA</option>
+                            <option value="BJ">BENIN</option>
+                            <option value="BW">BOTSWANA</option>
+                            <option value="BF">BURKINA FASO</option>
+                            <option value="BI">BURUNDI</option>
+                            <option value="CV">CABO VERDE</option>
+                            <option value="CM">CAMEROON</option>
+                            <option value="CF">CENTRAL AFRICAN REPUBLIC</option>
+                            <option value="TD">CHAD</option>
+                            <option value="KM">COMOROS</option>
+                            <option value="CG">REPUBLIC OF THE CONGO</option>
+                            <option value="CD">DEMOCRATIC REPUBLIC OF THE CONGO</option>
+                            <option value="CI">COTE D'IVOIRE</option>
+                            <option value="DJ">DJIBOUTI</option>
+                            <option value="EG">EGYPT</option>
+                            <option value="GQ">EQUATORIAL GUINEA</option>
+                            <option value="ER">ERITREA</option>
+                            <option value="SZ">ESWATINI</option>
+                            <option value="ET">ETHIOPIA</option>
+                            <option value="GA">GABON</option>
+                            <option value="GM">GAMBIA</option>
+                            <option value="GH">GHANA</option>
+                            <option value="GN">GUINEA</option>
+                            <option value="GW">GUINEA-BISSAU</option>
+                            <option value="KE">KENYA</option>
+                            <option value="LS">LESOTHO</option>
+                            <option value="LR">LIBERIA</option>
+                            <option value="LY">LIBYA</option>
+                            <option value="MG">MADAGASCAR</option>
+                            <option value="MW">MALAWI</option>
+                            <option value="ML">MALI</option>
+                            <option value="MR">MAURITANIA</option>
+                            <option value="MU">MAURITIUS</option>
+                            <option value="MA">MOROCCO</option>
+                            <option value="MZ">MOZAMBIQUE</option>
+                            <option value="NA">NAMIBIA</option>
+                            <option value="NE">NIGER</option>
+                            <option value="NG">NIGERIA</option>
+                            <option value="RW">RWANDA</option>
+                            <option value="ST">SAO TOME AND PRINCIPE</option>
+                            <option value="SN">SENEGAL</option>
+                            <option value="SC">SEYCHELLES</option>
+                            <option value="SL">SIERRA LEONE</option>
+                            <option value="SO">SOMALIA</option>
+                            <option value="ZA">SOUTH AFRICA</option>
+                            <option value="SS">SOUTH SUDAN</option>
+                            <option value="SD">SUDAN</option>
+                            <option value="TZ">TANZANIA</option>
+                            <option value="TG">TOGO</option>
+                            <option value="TN">TUNISIA</option>
+                            <option value="UG">UGANDA</option>
+                            <option value="EH">WESTERN SAHARA</option>
+                            <option value="ZM">ZAMBIA</option>
+                            <option value="ZW">ZIMBABWE</option>
+                        </select>
+                    </div>
+
+                    <div class="group">
+                        <label for="message">Message/Request</label>
+                        <textarea name="message" id="message" rows="3" placeholder="Type any specific request or instructions..."></textarea>
+                    </div>
+
+                </div>
+                <div class="return">
+                    <div class="row">
+                        <div>Total Quantity</div>
+                        <div class="totalQuantity">0</div>
+                    </div>
+                    <div class="row">
+                        <div>Total Price</div>
+                        <div class="totalPrice">₹0</div>
+                    </div>     
+                </div>
+                <button class="buttonCheckout">
+                    CHECKOUT
+                </button>
+            </div>
+            
+            
+        </div>
+    </div>
+    <script src="checkout.js"></script> 
+</body>
+</html>

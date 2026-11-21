@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<!--
+  Page: cart.html
+  Purpose: Product listing with slide-in cart and checkout link.
+  Author: [Your Name]
+  Last Updated: 2025-08-21
+-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"   content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>CART!</title>
+    <!-- Link to CSS for cart layout and styles. Modify colors, spacing, and layout in cart.css -->
+    <link rel="stylesheet" href="cart.css">
+    <script src="cart.js" defer></script>
+
+</head>
+<body>
+    <!-- Site logo linking back to the home page -->
+    
+        <!-- Page header: title on the left, cart icon with item count on the right -->
+          <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h2>Navigation</h2>
+            <button class="close-btn" onclick="closeSidebar()"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="sidebar-links">
+            <a href="../index.php"><i class="fa-solid fa-house"></i> Go to MAIN PAGE</a>
+            <a href="../updates.php"><i class="fas fa-bell"></i> UPDATES</a>
+            <a href="../ms/sports.php"><i class="fa-solid fa-medal"></i> SPORTS AND EVENTS</a>
+            <a href="#" id="profile-link"><i class="fas fa-user"></i> My Profile</a>
+        </div>
+    </div>
+    <div class="overlay" id="overlay" onclick="closeSidebar()"></div>
+    <!-- Fayamart Header Start -->
+    <div class="header">
+        <div class="header-row">
+        <div class="header-content">
+            <i class="fas fa-bars menu-icon" onclick="openSidebar()"></i>
+            <div class="logo-title">
+                <span>MARKET</span>
+                <span>Connecting Africans across  KIIT University</span>
+            </div>
+        </div>
+        </div>
+        <div class="search-bar-container">
+            <div class="search-bar">
+                <input 
+                    type="text" 
+                    class="search-input"
+                    placeholder="Search products/services..." 
+                />
+                <button class="search-icon">
+                <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </div>
+        <div class="iconCart">
+                <img src="icon3.jpg" alt="Cart Icon">
+                <!-- Bubble showing total items currently in the cart -->
+                <div class="totalQuantity">0</div>
+        </div>
+    </div>
+    <!--
+        <header id="header_2">
+            <h1>List of Products and Services</h1>
+            <!-- Clickable cart icon: opens the side cart panel -->
+            <!-- <div class="iconCart">
+                <img src="icon3.jpg" alt="Cart Icon">
+                <!-- Bubble showing total items currently in the cart -->
+                <!--<div class="totalQuantity">0</div>
+            </div>
+        </header> -->
+        <!-- Dynamic products grid inserted by cart.js (see addDataToHTML) -->
+    <div class="container">
+        <div class="listProduct">
+            <!-- Products will be dynamically added here by JavaScript -->
+        </div>
+    </div>
+    <!-- Slide-in cart panel. Controlled by cart.js open/close logic -->
+    <div class="cart">
+        <h2>CART</h2>
+        <!-- Dynamic cart items list (managed by addCartToHTML in cart.js) -->
+        <div class="listCart">
+            <!-- Cart items will be dynamically added here by JavaScript -->
+        </div>
+        <!-- Cart actions: close the panel or proceed to checkout page -->
+        <div class="buttons">
+            <div class="close">CLOSE</div>
+            <div class="checkout"><a href="checkout.html">CHECKOUT</a></div>
+        </div>
+    </div>
+    <!-- Main script: loads products, handles cart state, and UI interactions -->
+    
+
+
+<script>
+    // Get the search term from the URL
+    const params = new URLSearchParams(window.location.search);
+    const searchTerm = params.get('search');
+
+    // If there's a search term, set it in the input
+    if (searchTerm) {
+        const searchInput = document.getElementById('searchBar');
+        searchInput.value = searchTerm;
+
+        // Trigger the input event to activate live search
+        const event = new Event('input', { bubbles: true });
+        searchInput.dispatchEvent(event);
+    }
+</script>
+
+</body>
+</html>
